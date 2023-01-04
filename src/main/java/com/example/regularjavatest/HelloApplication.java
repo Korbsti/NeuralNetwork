@@ -87,58 +87,6 @@ public class HelloApplication {
                 second++;
             }*/
 
-        System.out.println("first: " + first);
-        System.out.println("second: " + second);
-
-        if (network.stopNetworkFromLearning) {
-            System.out.println("Network stopped learning:" + network.toString());
-            NeuralNetworkManager neuralNetworkManager = new NeuralNetworkManager();
-            neuralNetworkManager.writeNetworkToFile(network, "network.txt");
-        }
-
-        int success = 0;
-        int fail = 0;
-        for (int k = 0; k != size; k++) {
-
-            double[] inputs = new double[76];
-
-            for (int x = 0; x != 75; x++) {
-                if (x < 74) {
-                    if(Math.random() > 0.5){
-                        inputs[x] = 0.9;
-                    } else {
-                        inputs[x] = 0.1;
-                    }
-                } else {
-                    inputs[x] = Math.random();
-                }
-            }
-            if (inputs[74] > 0.5 || inputs[75] > 0.5) {
-                double output = network.feedForward(inputs)[0];
-                if(output > 0.5){
-                    System.out.println("Success");
-                    success++;
-                } else {
-                    System.out.println("Failure");
-                    fail++;
-                }
-                first++;
-            } else {
-                double output = network.feedForward(inputs)[0];
-                if(output < 0.5){
-                    System.out.println("Success");
-                    success++;
-                } else {
-                    System.out.println("Failure");
-                    fail++;
-                }
-                second++;
-            }
-            //print inputs
-
-        }
-        System.out.println("Success: " + success);
-        System.out.println("Fail: " + fail);
         }
 
 }
